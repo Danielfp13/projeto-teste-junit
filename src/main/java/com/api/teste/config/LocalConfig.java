@@ -1,15 +1,13 @@
 package com.api.teste.config;
 
-import java.util.List;
-
+import com.api.teste.domain.User;
+import com.api.teste.repositories.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.api.teste.domain.User;
-import com.api.teste.repositories.UserRepository;
-
-import lombok.AllArgsConstructor;
+import java.util.List;
 
 @Configuration
 @Profile("test")

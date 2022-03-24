@@ -1,18 +1,17 @@
 package com.api.teste.services.Impl;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.api.teste.domain.User;
 import com.api.teste.domain.dto.UserDTO;
 import com.api.teste.repositories.UserRepository;
 import com.api.teste.services.UserService;
 import com.api.teste.services.excptions.DataIntegrityViolationException;
 import com.api.teste.services.excptions.ObjectNotFoundException;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @Service

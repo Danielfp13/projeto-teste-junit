@@ -1,9 +1,9 @@
 package com.api.teste.services;
 
-import java.util.List;
-
 import com.api.teste.domain.User;
 import com.api.teste.domain.dto.UserDTO;
+
+import java.util.List;
 
 public interface UserService {
 	public User findById(Integer id);
