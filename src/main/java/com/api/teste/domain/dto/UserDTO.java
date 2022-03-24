@@ -1,0 +1,18 @@
+package com.api.teste.domain.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserDTO {
+
+	private Integer id;
+	private String nome;
+	private String email;
+    private String password;
+}
