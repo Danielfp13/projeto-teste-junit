@@ -1,6 +1,5 @@
 package com.api.teste.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -19,7 +18,7 @@ public class UserDTO {
 	private String nome;
 	private String email;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonProperty(access = Access.WRITE_ONLY )
     private String password;	
     
 }

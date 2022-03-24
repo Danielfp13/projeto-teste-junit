@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.api.teste.domain.User;
 import com.api.teste.repositories.UserRepository;
 import com.api.teste.services.UserService;
+import com.api.teste.services.excptions.DataIntegrityViolationException;
 import com.api.teste.services.excptions.ObjectNotFoundException;
 
 
@@ -33,7 +34,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User insert(User user) {
-		user.setId(null);
+		findByEmail(user.getEmail());
 		return userRepository.save(user);
+	}
+	
+	private void findByEmail(String email) {
+		Optional<User> user = userRepository.findByEmail(email);
+		if(user.isPresent()) {
+			throw new DataIntegrityViolationException("Já existe usuário com esse email");
+		}
+	
 	}
 }
