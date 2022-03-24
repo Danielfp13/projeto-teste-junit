@@ -17,8 +17,6 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
 
 	@Override
 	public User findById(Integer id) {
@@ -31,5 +29,11 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAll() {
 		List<User> users =  userRepository.findAll();
 		return users;
+	}
+
+	@Override
+	public User insert(User user) {
+		user.setId(null);
+		return userRepository.save(user);
 	}
 }
