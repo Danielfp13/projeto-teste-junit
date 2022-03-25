@@ -101,15 +101,28 @@ class UserResourceTest {
         assertEquals(ResponseEntity.class, response.getClass());
         assertNotNull(response.getHeaders().getLocation());
         assertNotNull(response.getHeaders().get("Location"));
-
     }
 
     @Test
-    void update() {
+    void whenUpdateThenReturnSucess() {
+        when(service.update(any())).thenReturn(user);
+        when(mapper.map(any(), any())).thenReturn(userDTO);
+
+        ResponseEntity<UserDTO> response = resource.update(userDTO,ID);
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertEquals(UserDTO.class, response.getBody().getClass());
+
+        assertEquals(ID,response.getBody().getId());
+        assertEquals(NOME,response.getBody().getNome());
+        assertEquals(EMAIL,response.getBody().getEmail());
     }
 
     @Test
-    void testUpdate() {
+    void testDelete() {
     }
 
     private void startUser() {
