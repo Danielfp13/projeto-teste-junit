@@ -3,6 +3,7 @@ package com.api.teste.services.Impl;
 import com.api.teste.domain.User;
 import com.api.teste.domain.dto.UserDTO;
 import com.api.teste.repositories.UserRepository;
+import com.api.teste.services.excptions.DataIntegrityViolationException;
 import com.api.teste.services.excptions.ObjectNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -100,6 +101,18 @@ class UserServiceImplTest {
         assertEquals(NOME, response.getNome());
         assertEquals(EMAIL, response.getEmail());
         assertEquals(PASSWORD, response.getPassword());
+    }
+
+    @Test
+    void whenInsertThenReturnAnDataIntegrityViolationException() {
+       when(repository.findByEmail(anyString())).thenReturn(optionalUser);
+       try {
+           optionalUser.get().setId(2);
+           service.insert(userDTO);
+       }catch (Exception e){
+           assertEquals(DataIntegrityViolationException.class, e.getClass());
+           assertEquals("Já existe usuário com esse email", e.getMessage());
+       }
     }
 
     @Test
