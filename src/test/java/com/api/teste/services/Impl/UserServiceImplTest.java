@@ -3,6 +3,7 @@ package com.api.teste.services.Impl;
 import com.api.teste.domain.User;
 import com.api.teste.domain.dto.UserDTO;
 import com.api.teste.repositories.UserRepository;
+import com.api.teste.services.excptions.ObjectNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,6 +59,18 @@ class UserServiceImplTest {
         assertEquals(NOME,response.getNome());
         assertEquals(EMAIL,response.getEmail());
 
+    }
+
+    @Test
+    void whenFindByIdThenReturnAnObjectNotFoundException(){
+        when(repository.findById(ID)).thenThrow(
+                new ObjectNotFoundException("Usúario com id " + ID + " não existe."));
+        try {
+            service.findById(ID);
+        }catch (Exception e){
+            assertEquals(ObjectNotFoundException.class, e.getClass());
+            assertEquals("Usúario com id " + ID + " não existe.", e.getMessage());
+        }
     }
 
     @Test
