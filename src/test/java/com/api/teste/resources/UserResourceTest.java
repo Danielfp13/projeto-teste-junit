@@ -92,7 +92,16 @@ class UserResourceTest {
     }
 
     @Test
-    void insert() {
+    void whenInsertThenReturnCreated() {
+        when(service.insert(any())).thenReturn(user);
+
+        ResponseEntity<UserDTO>  response = resource.insert(userDTO);
+
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertNotNull(response.getHeaders().getLocation());
+        assertNotNull(response.getHeaders().get("Location"));
+
     }
 
     @Test
